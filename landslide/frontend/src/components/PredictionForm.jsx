@@ -47,7 +47,10 @@ export default function PredictionForm() {
     setResult(null);
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL || "/api";
+      const configuredApiUrl = import.meta.env.VITE_API_URL || "/api";
+      const API_URL = configuredApiUrl === "https://kavach-api.onrender.com"
+        ? "https://kavach-api-4tdx.onrender.com"
+        : configuredApiUrl;
       const res = await axios.post(
         `${API_URL}/predict`,
         formData
