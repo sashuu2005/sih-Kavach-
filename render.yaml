@@ -19,6 +19,6 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        value: https://kavach-api.onrender.com
+        value: https://kavach-api-4tdx.onrender.com
       - key: VITE_GOOGLE_MAPS_API_KEY
         sync: false
