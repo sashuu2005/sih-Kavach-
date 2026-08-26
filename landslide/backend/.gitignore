@@ -1,0 +1,61 @@
+# ------------------------------
+# Environment & Secrets
+# ------------------------------
+.env
+.env.*
+!*.env.example
+
+# ------------------------------
+# Python
+# ------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# ------------------------------
+# ML / Model files (optional)
+# Uncomment if you DON'T want to track models
+# ------------------------------
+# *.pkl
+# *.joblib
+
+# ------------------------------
+# Node / React
+# ------------------------------
+node_modules/
+dist/
+build/
+.vite/
+
+# ------------------------------
+# Logs
+# ------------------------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# ------------------------------
+# OS files
+# ------------------------------
+.DS_Store
+Thumbs.db
+
+# ------------------------------
+# Editor / IDE
+# ------------------------------
+.vscode/
+.idea/
+
+# ------------------------------
+# Misc
+# ------------------------------
+coverage/

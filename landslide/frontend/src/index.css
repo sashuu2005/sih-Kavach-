@@ -1,0 +1,72 @@
+@reference "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .modern-input {
+    @apply w-full px-4 py-3 bg-[#E8E6E1] border border-[#D6D3CC] rounded-xl 
+           outline-none transition-all duration-200 text-[#2D2C2A]
+           focus:bg-[#F0EFEA] focus:border-[#D96B58] focus:ring-4 focus:ring-[#D96B58]/10
+           placeholder:text-[#A09E99] font-medium font-sans;
+  }
+
+  .dark-input {
+    @apply w-full px-4 py-3 bg-[#2D2C2A] border border-[#3E3D3B] rounded-xl 
+           outline-none transition-all duration-300 text-[#F0EFEA] hover:border-[#504F4C]
+           focus:bg-[#232220] focus:border-[#D96B58] focus:ring-2 focus:ring-[#D96B58]/20
+           placeholder:text-[#8A8885] font-medium font-sans shadow-sm;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 8% 0%, rgba(242, 166, 90, 0.2), transparent 24rem),
+    radial-gradient(circle at 92% 14%, rgba(102, 199, 194, 0.14), transparent 28rem),
+    #0c1524;
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
+  color: #F8FAFC;
+  min-width: 320px;
+}
+
+main {
+  animation: page-enter 500ms ease-out both;
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+
+::selection {
+  background: #F2A65A;
+  color: #111827;
+}
+
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #F2A65A;
+  outline-offset: 3px;
+}
