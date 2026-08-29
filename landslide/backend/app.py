@@ -9,14 +9,11 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# Load Hybrid Model
 from PIL import Image
 import io
 import math
 import sys
 
-# Instead of using pickle (which causes __main__ AttributeError), 
-# we instantiate the mock model directly since TensorFlow is unvailable on Python 3.14.
 try:
     from train_mock_hybrid import MockHybridModel
     hybrid_model = MockHybridModel()
@@ -25,7 +22,6 @@ except ImportError:
     sys.exit(1)
 
 def generate_sample_data(city):
-    """Generate sample environmental data for a city"""
     np.random.seed(sum(ord(c) for c in city)) 
     return {
         "rainfall": round(np.random.uniform(0, 100), 2),
@@ -39,7 +35,6 @@ def generate_sample_data(city):
     }
 
 def generate_sample_image():
-    """Generate a sample satellite-like image"""
     return Image.fromarray(np.random.randint(50, 200, (224, 224, 3), dtype=np.uint8))
 
 @app.route("/")
@@ -55,16 +50,13 @@ def predict():
         if not city:
             return {"error": "City name is required"}, 400
 
-        # Generate sample data (no external API calls)
         data = generate_sample_data(city)
         
-        # Generate sample image
         img = generate_sample_image()
         img = img.resize((224, 224))
         img_array = np.array(img, dtype=np.float32) / 255.0
-        img_batch = np.expand_dims(img_array, axis=0)  # Shape: (1, 224, 224, 3)
+        img_batch = np.expand_dims(img_array, axis=0)
         
-        # Prepare environmental features
         rainfall = float(data.get("rainfall", 0))
         river_level = float(data["river_level"])
         humidity = float(data["humidity"])
@@ -80,14 +72,13 @@ def predict():
             vegetation,
             past_events
         ]], dtype=np.float32)
-        weather_batch = np.expand_dims(weather_features, axis=0)  # Shape: (1, 1, 6)
+        weather_batch = np.expand_dims(weather_features, axis=0)
         
     except (ValueError, TypeError) as e:
         return {"error": "Invalid input values. Please provide valid data."}, 400
     except Exception as e:
         return {"error": f"Error processing input: {str(e)}"}, 400
 
-    # Run Prediction
     try:
         prediction = hybrid_model.predict({'image_input': img_batch, 'weather_input': weather_batch})
         
