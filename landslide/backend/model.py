@@ -13,3 +13,6 @@ with open("landslide_model.pkl", "wb") as model_file:
 	pickle.dump(landslide_model, model_file)
 
 print("Landslide model trained successfully")
+
+
+#random forest classifer
